@@ -1,0 +1,18 @@
+alias: Set Office Lights for Work Day
+description: >-
+  Activate "videoconferencing" scene when "workday_sensor" is true and
+  Bose 700 UC or Jabra Elite 85h are detected by the Office BLE presence sensor.
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.bose_700_uc
+      - binary_sensor.jabra_elite_85h
+    to: "on"
+condition:
+  - condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: "on"
+action:
+  - scene: scene.office_video_calls
+mode: single
+
